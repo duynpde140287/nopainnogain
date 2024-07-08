@@ -1,0 +1,19 @@
+
+POST http://localhost:8585/auth/login
+Content-Type: application/json
+
+{
+    "username": "duy.nguyenphan",
+    "password": "TrinhNy@"
+}
+
+###
+POST http://localhost:8585/auth/register
+Content-Type: application/json
+
+{
+    "username": "dang.tranquang",
+    "password": "Phuccute123@",
+    "email": "dang.tranquang@mobifone.vn"
+}
+    

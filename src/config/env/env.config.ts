@@ -17,7 +17,7 @@ export const EnvConfiguration = (): {
 } => ({
   environment: process.env.NODE_ENV || 'dev',
   mongodb: process.env.DB_URI,
-  port: process.env.PORT || 8888,
+  port: process.env.PORT || 8585,
   database: process.env.DB_NAME || 'ecommerce',
   secret_key: process.env.SECRET_KEY || 'sonlele',
 });

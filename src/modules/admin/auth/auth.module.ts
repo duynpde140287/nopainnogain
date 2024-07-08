@@ -1,5 +1,5 @@
-// auth.module.ts
-import { Module } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { forwardRef, Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
@@ -8,9 +8,11 @@ import { AuthController } from './auth.controller';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
   imports: [
+    forwardRef(() => NotificationsModule),
     UsersModule,
     PassportModule,
     JwtModule.registerAsync({
@@ -22,7 +24,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
+  exports: [JwtStrategy, LocalStrategy, PassportModule],
 })
 export class AuthModule {}

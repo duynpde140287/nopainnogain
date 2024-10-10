@@ -9,7 +9,11 @@ import {
 import { MongoServerError } from 'mongodb';
 import { Response } from 'express';
 import { MongooseError } from 'mongoose';
+import { QueryFailedError } from 'typeorm';
 
+/**
+ * Bắt các lỗi về xử lý, tránh tối đa tình trạng lỗi 500
+ */
 @Catch(HttpException, MongoServerError, MongooseError, Error)
 export class AllExceptionFilter implements ExceptionFilter {
   private static handleResponse(
@@ -32,7 +36,7 @@ export class AllExceptionFilter implements ExceptionFilter {
   }
 
   catch(
-    exception: MongoServerError | HttpException | Error,
+    exception: MongoServerError | HttpException | Error | QueryFailedError,
     host: ArgumentsHost,
   ) {
     const ctx = host.switchToHttp();
@@ -64,6 +68,19 @@ export class AllExceptionFilter implements ExceptionFilter {
         message: exception.message,
         statusCode: HttpStatus.BAD_REQUEST,
       };
+    } else if (exception instanceof QueryFailedError) {
+      // Bắt lỗi Oracle (sử dụng QueryFailedError từ TypeORM)
+      if (exception.message.includes('ORA-00001')) {
+        responseBody = {
+          message: 'Duplicate key error!',
+          statusCode: HttpStatus.CONFLICT,
+        };
+      } else {
+        responseBody = {
+          message: 'Database query error!',
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        };
+      }
     } else if (exception instanceof Error) {
       responseBody = {
         message: exception.message,

@@ -10,8 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { PapersService } from './papers.service';
-import { CreatePaperDto } from './dto/create-paper.dto';
-import { UpdatePaperDto } from './dto/update-paper.dto';
+import { CreatePaperDto, UpdatePaperDto } from './dto/paper.dto';
 import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 import { RolesGuard } from 'src/guards/roles.guard';
 import { Roles } from 'src/decorators/roles.decorator';

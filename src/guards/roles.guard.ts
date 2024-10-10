@@ -13,6 +13,9 @@ import { ConfigService } from '@nestjs/config';
 import * as jwt from 'jsonwebtoken';
 import { RBAC } from 'src/enums/roles.enum';
 
+/**
+ * Kiểm tra quyền user
+ */
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(

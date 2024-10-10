@@ -13,13 +13,13 @@ import { EnvConfiguration } from '../env/env.config';
     }),
   ],
 })
-export class DatabaseModule implements OnModuleInit {
+export class DatabaseMongoModule implements OnModuleInit {
   async onModuleInit() {
     try {
       await MongooseModule.forRoot(EnvConfiguration().mongodb);
-      console.log('Kết nối cơ sở dữ liệu thành công!');
+      console.log('Kết nối MongoDB thành công!');
     } catch (error) {
-      console.error('Lỗi khi kết nối cơ sở dữ liệu: ', error);
+      console.error('Lỗi khi kết nối MongoDB: ', error);
     }
   }
 }

@@ -1,6 +1,7 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
-import { CreatePaperDto } from './dto/create-paper.dto';
-import { UpdatePaperDto } from './dto/update-paper.dto';
+import { CreatePaperDto, UpdatePaperDto } from './dto/paper.dto';
 
 @Injectable()
 export class PapersService {

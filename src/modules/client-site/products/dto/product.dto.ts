@@ -50,7 +50,7 @@ export class UpdateProductDto {
   @Length(0, 255, { message: 'Độ dài tiêu đề từ 0-255 ký tự!' })
   name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @Transform(({ value }) =>
     typeof Number(value) === 'number' && Number(value) >= 0
       ? Number(value)

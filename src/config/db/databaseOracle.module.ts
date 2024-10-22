@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { DataSource } from 'typeorm';
 import { ConfigEnvModule } from '../config.module';
 import { Product } from 'src/modules/client-site/products/entities/product.entity';
+import { UserClient } from 'src/modules/client-site/users/entity/users-client.entity';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { Product } from 'src/modules/client-site/products/entities/product.entit
         username: configService.get<string>('DB_ORACLE_USERNAME'),
         password: configService.get<string>('DB_ORACLE_PASSWORD'),
         sid: configService.get<string>('DB_ORACLE_SID'),
-        entities: [Product], // Thêm các entity của bạn vào đây
+        entities: [UserClient, Product], // Thêm các entity của bạn vào đây
         synchronize: true, // tự động tạo bảng
       }),
       inject: [ConfigService], // Inject ConfigService để lấy giá trị cấu hình

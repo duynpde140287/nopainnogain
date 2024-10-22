@@ -2,5 +2,6 @@
 export enum RBAC {
   ADMIN = 'ADMIN',
   PAPERS = 'PAPERS',
+  CLIENT = 'CLIENT',
   PRODUCTION = 'PRODUCTS',
 }

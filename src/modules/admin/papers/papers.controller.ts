@@ -27,6 +27,7 @@ export class PapersController {
     return this.papersService.create(createPaperDto);
   }
 
+  @Roles(RBAC.PAPERS)
   @Get()
   findAll() {
     return this.papersService.findAll();

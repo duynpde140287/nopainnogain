@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+import { IsIn } from 'class-validator';
+import { booleanStringEnum } from 'src/enums/true-false.enum';
 import {
   Column,
   CreateDateColumn,
@@ -32,4 +34,10 @@ export class Product {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+
+  @Column({ type: 'char', length: 1, default: booleanStringEnum.NO })
+  @IsIn([booleanStringEnum.NO, booleanStringEnum.YES], {
+    message: 'Giá trị chỉ có thể là N (false) hoặc Y (true) !!!',
+  })
+  is_deleted: string;
 }

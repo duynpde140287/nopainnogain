@@ -2,6 +2,9 @@
 import { ValidatorOptions } from 'class-validator';
 import { HttpStatus } from '@nestjs/common';
 
+/**
+ * Custom validation
+ */
 export const ValidationConfig:
   | ValidatorOptions
   | Record<string, string | number | boolean> = {

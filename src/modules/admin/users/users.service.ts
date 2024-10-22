@@ -2,12 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 // src/users/users.service.ts
-import {
-  ConflictException,
-  forwardRef,
-  Inject,
-  Injectable,
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Promise } from 'mongoose';
 import { User, UserDocument } from './entity/user.entity';
@@ -56,12 +51,5 @@ export class UsersService {
       )
       .lean()
       .exec();
-  }
-
-  async comparePasswords(
-    enteredPassword: string,
-    storedPassword: string,
-  ): Promise<boolean> {
-    return bcrypt.compare(enteredPassword, storedPassword);
   }
 }

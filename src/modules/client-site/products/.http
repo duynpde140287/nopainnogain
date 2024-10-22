@@ -1,0 +1,45 @@
+@tokenAuth=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImR1eS5uZ3V5ZW5waGFuIiwic3ViIjoxNzI5MTU4NzU5LCJyb2xlcyI6IltQUk9EVUNUUywgQ0xJRU5UXSIsImlhdCI6MTcyOTU2MjM0NCwiZXhwIjoxNzI5NTY1OTQ0fQ.MEcgLIvSA5DkYDQwlfSl5TWoFAT4Iyjpb5VMonP1inI
+
+###
+GET http://localhost:8585/products
+Content-Type: application/json
+Authorization: {{tokenAuth}}
+
+{}
+
+###
+POST  http://localhost:8585/products
+Content-Type: application/json
+# Authorization: {{tokenAuth}}
+
+{
+  "name": "Giày Fila",
+  "price": 1995,
+  "description": "Fila trắng đen hồng.",
+  "quantity": 413
+}
+
+###
+PATCH http://localhost:8585/products/88e7e43b-f08e-4f81-94a9-e76f5aafe54c
+Content-Type: application/json
+# Authorization: {{tokenAuth}}
+
+{
+  "name": "Giày Bitis"
+}
+
+###
+PATCH http://localhost:8585/products/update/88e7e43b-f08e-4f81-94a9-e76f5aafe54c
+Content-Type: application/json
+# Authorization: {{tokenAuth}}
+
+{
+  "name": "Giày Biti's"
+}
+
+###
+DELETE  http://localhost:8585/products/1570e99a-0d88-4e97-b2ba-65bff1637371
+Content-Type: application/json
+# Authorization: {{tokenAuth}}
+
+

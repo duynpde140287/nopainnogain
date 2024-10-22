@@ -38,13 +38,13 @@ export class NotificationsService {
       ? { alert: { $regex: new RegExp(escapeRegExp(keyword), 'i') } }
       : {};
 
-    const { resPerPage, passedPage } = paginateCalculator(page, limit);
+    const { resPerPage, passedItem } = paginateCalculator(page, limit);
 
     const findAll = await this.notificationModel
       .find({ ...key })
       .sort({ createAt: -1 })
       .limit(resPerPage)
-      .skip(passedPage)
+      .skip(passedItem)
       .lean()
       .exec();
 

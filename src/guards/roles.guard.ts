@@ -13,6 +13,9 @@ import { ConfigService } from '@nestjs/config';
 import * as jwt from 'jsonwebtoken';
 import { RBAC } from 'src/enums/roles.enum';
 
+/**
+ * Kiểm tra quyền user
+ */
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(
@@ -44,12 +47,19 @@ export class RolesGuard implements CanActivate {
       throw new UnauthorizedException();
     }
 
-    if (
-      requiredRoles.some((requiredRole) => user.roles.includes(requiredRole))
-    ) {
-      return true; // User has at least one required role, allow access
+    let rolesArr = user?.roles;
+
+    if (typeof rolesArr === 'string') {
+      rolesArr?.includes(' ')
+        ? (rolesArr = rolesArr?.replace(/[\[\]]/g, '').split(', '))
+        : (rolesArr = rolesArr?.replace(/[\[\]]/g, '').split(','));
+    }
+    // console.log(rolesArr);
+
+    if (requiredRoles.some((requiredRole) => rolesArr.includes(requiredRole))) {
+      return true;
     }
 
-    throw new ForbiddenException();
+    throw new ForbiddenException('Tài khoản chưa được cấp quyền!');
   }
 }
